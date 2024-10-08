@@ -11,7 +11,7 @@ using Zotikov_Leonid_KT_31_21.Database;
 namespace Zotikov_Leonid_KT_31_21.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    [Migration("20240927145344_CreateDatabase")]
+    [Migration("20241008144904_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />
@@ -221,11 +221,10 @@ namespace Zotikov_Leonid_KT_31_21.Migrations
             modelBuilder.Entity("Zotikov_Leonid_KT_31_21.Models.Subject", b =>
                 {
                     b.HasOne("Zotikov_Leonid_KT_31_21.Models.Student", "Student")
-                        .WithMany("Subjects")
+                        .WithMany()
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_f_student_id");
+                        .IsRequired();
 
                     b.Navigation("Student");
                 });
@@ -239,11 +238,6 @@ namespace Zotikov_Leonid_KT_31_21.Migrations
                         .IsRequired();
 
                     b.Navigation("student");
-                });
-
-            modelBuilder.Entity("Zotikov_Leonid_KT_31_21.Models.Student", b =>
-                {
-                    b.Navigation("Subjects");
                 });
 #pragma warning restore 612, 618
         }

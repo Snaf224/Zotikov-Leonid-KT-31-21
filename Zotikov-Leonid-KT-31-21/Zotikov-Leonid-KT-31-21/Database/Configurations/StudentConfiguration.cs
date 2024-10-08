@@ -46,7 +46,6 @@ namespace Zotikov_Leonid_KT_31_21.Database.Configurations
                 .HasColumnType(ColumnType.String).HasMaxLength(100)
                 .HasComment("Отчество студента");
 
-            //связь с таблицей групп
             builder.Property(p => p.GroupId)
                 .IsRequired()
                 .HasColumnName("f_group_id")
@@ -60,27 +59,30 @@ namespace Zotikov_Leonid_KT_31_21.Database.Configurations
                 .HasConstraintName("fk_f_group_id")
                 .OnDelete(DeleteBehavior.Cascade);
 
-            
             builder.ToTable(TableName)
                 .HasIndex(p => p.GroupId, $"idx_{TableName}_fk_f_group_id");
 
+            //Добавим явную автоподгрузку связанной сущности
+            builder.Navigation(p => p.Group)
+                .AutoInclude();
+
             //связь с таблицей предметы
-            builder.Property(p => p.Subject)
-                .IsRequired()
-                .HasColumnName("f_subject_id")
-                .HasColumnType(ColumnType.Int)
-                .HasComment("Идентификатор предмета");
+            //builder.Property(p => p.Subject)
+            //    .IsRequired()
+            //    .HasColumnName("f_subject_id")
+            //    .HasColumnType(ColumnType.Int)
+            //    .HasComment("Идентификатор предмета");
 
-            builder.ToTable(TableName)
-                .HasOne(p => p.Subject)
-                .WithMany()
-                .HasForeignKey(p => p.SubjectId)
-                .HasConstraintName("fk_f_subject_id")
-                .OnDelete(DeleteBehavior.Cascade);
+            //builder.ToTable(TableName)
+            //    .HasOne(p => p.Subject)
+            //    .WithMany()
+            //    .HasForeignKey(p => p.SubjectId)
+            //    .HasConstraintName("fk_f_subject_id")
+            //    .OnDelete(DeleteBehavior.Cascade);
 
 
-            builder.ToTable(TableName)
-                .HasIndex(p => p.SubjectId, $"idx_{TableName}_fk_f_grade_id");
+            //builder.ToTable(TableName)
+            //    .HasIndex(p => p.SubjectId, $"idx_{TableName}_fk_f_subject_id");
 
 
         }

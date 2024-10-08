@@ -15,10 +15,10 @@
 
         public Group Group {  get; set; }
 
-        public int SubjectId { get; set; }
+        //public int SubjectId { get; set; }
 
-        public Subject Subject { get; set; }
+        //public Subject Subject { get; set; }
 
-        public ICollection<Subject> Subjects { get; set; } = new List<Subject>();
+        //public ICollection<Subject> Subjects { get; set; } = new List<Subject>();
     }
 }

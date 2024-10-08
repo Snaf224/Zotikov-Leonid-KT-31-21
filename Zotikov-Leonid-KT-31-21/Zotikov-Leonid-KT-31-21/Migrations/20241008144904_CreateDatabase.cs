@@ -80,7 +80,7 @@ namespace Zotikov_Leonid_KT_31_21.Migrations
                 {
                     table.PrimaryKey("pk_cd_subject_subject_id", x => x.subject_id);
                     table.ForeignKey(
-                        name: "fk_f_student_id",
+                        name: "FK_cd_subject_cd_student_StudentId",
                         column: x => x.StudentId,
                         principalTable: "cd_student",
                         principalColumn: "student_id",
